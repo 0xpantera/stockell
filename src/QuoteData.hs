@@ -37,3 +37,10 @@ instance FromField Day where
 data QField = Open | Close | High | Low | Volume
   deriving (Show, Enum, Bounded, BoundedEnum)
 
+
+field2fun :: QField -> QuoteData -> Fixed4
+field2fun Open = open
+field2fun Close = close
+field2fun High = high
+field2fun Low = low
+field2fun Volume = volume
