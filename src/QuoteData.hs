@@ -1,6 +1,8 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE DeriveGeneric, DeriveAnyClass #-}
 
+module QuoteData where
+
 import Data.Fixed (HasResolution (..), Fixed)
 import Data.Time (Day, parseTimeM, defaultTimeLocale)
 import Safe (readDef)
@@ -8,6 +10,7 @@ import Data.ByteString.Char8 (unpack)
 import GHC.Generics (Generic)
 import Data.Csv (FromNamedRecord, FromField (..))
 
+import BoundedEnum
 
 data E4
 
@@ -23,15 +26,16 @@ data QuoteData = QuoteData { day :: Day
                            , volume :: Fixed4
                            , open :: Fixed4
                            , high :: Fixed4
-                           , low :: Fixed4 } deriving (Generic, FromNamedRecord)
+                           , low :: Fixed4 }
+               deriving (Generic, FromNamedRecord)
 
 
 instance FromField Fixed4 where
-  parseField s = pure $ readDef 0 $ unpack s
+  parseField s = pure . readDef 0 . unpack
 
 
 instance FromField Day where
-  parseField s = parseTimeM False defaultTimeLocale "%Y/%m/%d" (unpack s)
+  parseField s = parseTimeM False defaultTimeLocale "%Y/%m/%d" . unpack
 
 
 data QField = Open | Close | High | Low | Volume
@@ -44,5 +48,3 @@ field2fun Close = close
 field2fun High = high
 field2fun Low = low
 field2fun Volume = volume
-
-
