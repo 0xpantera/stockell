@@ -26,3 +26,27 @@ type StatInfo = [StatQFieldData]
 
 
 
+mean xs = sum xs / fromIntegral (length xs)
+
+
+daysBetween qf quotes = fromIntegral $ abs $ diffDays dMinQuote dMaxQuote
+  where
+    cmp = comparing (field2fun qf)
+    dMinQuote = day $ minimumBy cmp quotes
+    dMaxQuote = day $ maximumBy cmp quotes
+
+
+funcByField func qf = func . fmap (field2fun qf)
+
+
+computeStatistic Mean = funcByField mean
+computeStatistic Min = funcByField minimum
+computeStatistic Max = funcByField maximum
+computeStatistic Days = daysBetween
+
+
+statInfo :: (Functor t, Foldable t) => t QuoteData -> StatInfo
+statInfo quotes = map stQFData range
+  where
+    stQFData qf = (qf, [ StatEntry st qf v | st <- range,
+                         let v = computeStatistic st qf quotes ])
