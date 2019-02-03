@@ -13,4 +13,26 @@ import Charts
 import Params
   
 main :: IO ()
-main = print "Implement"
+main = cmdLineParser >>= work
+
+
+work :: Params -> IO ()
+work params = do
+  csvData <- BL.readFile (fname params)
+  case decodeByName csvData of
+    Left err -> putStrLn err
+    Right (_, quotes) -> generateReports params quotes
+
+
+generateReports :: (Functor t, Foldable t) => Params -> t QuoteData -> IO ()
+generateReports Params {..} quotes = do
+  TIO.putStr $ statReport statInfo'
+  when prices $ plotChart title quotes [Open, Close, High, Low] fname_prices
+  when volumes $ plotChart title quotes [Volume] fname_volumes
+ where
+   statInfo' = statInfo quotes
+   withCompany pref = if company /= "" then pref ++ company else ""
+   img_suffix = withCompany "_" ++ ".svg"
+   fname_prices = "prices" ++ img_suffix
+   fname_volumes = "volumes" ++ img_suffix
+   title = "Historical Quotes" ++ withCompany " for "
