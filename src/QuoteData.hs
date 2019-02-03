@@ -31,11 +31,11 @@ data QuoteData = QuoteData { day :: Day
 
 
 instance FromField Fixed4 where
-  parseField s = pure . readDef 0 . unpack
+  parseField = pure . readDef 0 . unpack
 
 
 instance FromField Day where
-  parseField s = parseTimeM False defaultTimeLocale "%Y/%m/%d" . unpack
+  parseField = parseTimeM False defaultTimeLocale "%Y/%m/%d" . unpack
 
 
 data QField = Open | Close | High | Low | Volume
