@@ -8,7 +8,9 @@
 # A snapshot resolver dictates the compiler version and the set of packages
 # to be used for project dependencies. For example:
 #
-# resolver: lts-3.5
+resolver: lts-10.10
+packages:
+- .
 # resolver: nightly-2015-09-21
 # resolver: ghc-7.10.2
 #
@@ -37,7 +39,13 @@ packages:
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
-# extra-deps: []
+#extra-deps:
+#- Chart-1.9@sha256:f41568b6b3704f66c2ec163295b430ab7d798f91de426c2d5aba747d1135cd9b
+#- Chart-diagrams-1.9@sha256:cdd0c22d730e507f9644e690833096ee127302b5ff5e1571f6def419160a2642
+#- SVGFonts-1.6.0.3@sha256:54b9f889a4fb8876c3192215aff2ccd2eb8ad2b4731f63caa8f20ab6115f6bb5
+#- containers-0.5.11.0@sha256:28ad7337057442f75bc689315ab4ec7bdf5e6b2c39668f306672cecd82c02798
+#- diagrams-postscript-1.4.1@sha256:219fe62639e23659ac5bb13c76fb2713ff1d5cd1091b4ca9e97b64cfe981197c
+#- lens-4.16.1@sha256:310f1b3bc2c064267637d1cc33074b557b107e8ea3e3f0617e44ad5a241d0886
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

@@ -28,7 +28,11 @@ dependencies:
 - optparse-applicative
 - bytestring
 - safe
-
+- diagrams
+- diagrams-lib
+- diagrams-contrib
+- diagrams-svg
+- diagrams-core
 library:
   source-dirs: src
 
