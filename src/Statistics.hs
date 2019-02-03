@@ -5,7 +5,7 @@ module Statistics (
   StatQFieldData, StatInfo, statInfo) where
 
 import Data.Ord (comparing)
-import Data.Foldabe (minimumBy, maximumBy)
+import Data.Foldable (minimumBy, maximumBy)
 import Data.Time (diffDays)
 
 import BoundedEnum
@@ -21,7 +21,7 @@ data StatEntry = StatEntry { stat :: Statistic,
                              value :: Fixed4 }
 
 
-type StatQFieldData = (Qfield, [StatEntry])
+type StatQFieldData = (QField, [StatEntry])
 type StatInfo = [StatQFieldData]
 
 
