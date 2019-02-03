@@ -28,4 +28,8 @@ mkParams =
              <> help "create file with volumes chart")
 
 
-               
+cmdLineParser :: IO Params
+cmdLineParser = execParser opts
+  where
+    opts = info (mkParams <**> helper)
+                (fullDesc <> progDesc "Stock quotes data processing")
