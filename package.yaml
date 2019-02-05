@@ -10,29 +10,21 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
-
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/Francososa/stockell#readme>
+description: Please see the README on GitHub at <https://github.com/Francososa/stockell#readme>
 
 dependencies:
-- base >= 4.7 && < 5
-- time
-- text
-- fmt
-- cassava
-- optparse-applicative
-- bytestring
-- safe
-- diagrams
-- diagrams-lib
-- diagrams-contrib
-- diagrams-svg
-- diagrams-core
+- base >= 4.10 && <4.13
+- bytestring >=0.10 && <0.11
+- blaze-html >=0.9 && <0.10
+- optparse-applicative >=0.14 && <0.15
+- time >=1.8 && <1.10
+- text >=1.2 && <1.3
+- fmt >=0.5 && <0.7
+- safe >=0.3 && <0.4
+- Chart >=1.8 && <1.10
+- Chart-diagrams >=1.8 && <1.10
+- cassava >=0.5 && <0.6
+
 library:
   source-dirs: src
 
